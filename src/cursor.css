@@ -1,0 +1,10 @@
+/* Default cursor: GTA-style pointer approximation */
+body {
+  cursor: crosshair;
+}
+
+/* Magnifying glass cursor on text hover */
+body :is(p, span, a, h1, h2, h3, h4, h5, h6, li, label, button, input, textarea) {
+  cursor: zoom-in;
+}
+

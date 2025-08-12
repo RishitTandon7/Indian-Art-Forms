@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Era - Terracotta Guardians of Bankura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ancient-bg: #D9C6A5;
+            --ancient-dark: #8B4513;
+            --ancient-text: #5D4037;
+            --gold: #D4AF37;
+            --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --shadow-strong: 0 30px 80px rgba(0, 0, 0, 0.25);
+            --transition-smooth: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--ancient-bg);
+            color: var(--ancient-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Clay Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.08) 0%, transparent 50%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1.5" fill="%238B4513" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="%238B4513" opacity="0.05"/><circle cx="50" cy="50" r="0.8" fill="%23A0522D" opacity="0.08"/><circle cx="30" cy="70" r="1.2" fill="%238B4513" opacity="0.06"/></svg>') repeat;
+            animation: clayDrift 30s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes clayDrift {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-50px) translateY(-50px); }
+        }
+
+        /* Navigation */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(139, 69, 19, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold), #B8860B);
+            color: var(--ancient-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-strong);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-section::before {
+            content: '🏺';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15rem;
+            opacity: 0.08;
+            animation: ancientPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes ancientPulse {
+            0%, 100% { opacity: 0.08; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+            50% { opacity: 0.15; transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
+        }
+
+        .era-badge {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: rgba(139, 69, 19, 0.2);
+            border: 2px solid var(--ancient-dark);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--ancient-dark);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--ancient-dark);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--ancient-text);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .image-showcase {
+            position: relative;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .showcase-frame {
+            position: relative;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            box-shadow: var(--shadow-strong);
+            transition: var(--transition-smooth);
+        }
+
+        .showcase-frame:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 100px rgba(139, 69, 19, 0.3);
+        }
+
+        .showcase-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .text-content {
+            animation: slideInRight 1s ease-out;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--ancient-dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .description {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--ancient-text);
+            margin-bottom: 2rem;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            transition: var(--transition-smooth);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold), #B8860B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-soft);
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--ancient-dark);
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--ancient-text);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-bar {
+                padding: 0.8rem 1rem;
+            }
+
+            .nav-title {
+                font-size: 1.1rem;
+            }
+
+            .back-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-section {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 3rem);
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1.2rem, 4vw, 1.3rem);
+            }
+
+            .era-badge {
+                font-size: 0.8rem;
+                padding: 0.6rem 1.5rem;
+                letter-spacing: 1px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .content-section {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: clamp(2rem, 6vw, 2.2rem);
+                text-align: center;
+            }
+
+            .description {
+                font-size: clamp(1.1rem, 4vw, 1.2rem);
+                text-align: center;
+            }
+
+            .showcase-frame {
+                padding: 1.5rem;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .showcase-image {
+                height: 300px;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 3rem 0;
+            }
+
+            .info-card {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+
+            .card-text {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 5rem 0.5rem 2rem;
+            }
+
+            .content-section {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .showcase-frame {
+                padding: 1rem;
+            }
+
+            .showcase-image {
+                height: 250px;
+            }
+
+            .info-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-title">Ancient Era - Terracotta Heritage</div>
+            <a href="index.html" class="back-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Timeline
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="era-badge">Ancient Era • 200 BCE</div>
+        <h1 class="hero-title">Terracotta Guardians of Bankura</h1>
+        <p class="hero-subtitle">Sacred Clay Craftsmanship from Bengal</p>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="content-grid">
+            <div class="image-showcase">
+                <div class="showcase-frame">
+                    <img src="https://trovecraftindia.com/cdn/shop/files/Bankura_Horse_Small_06530df9-db14-46ef-8f73-e3c784809566.jpg?v=1746176951&width=1445" 
+                         alt="Bankura Terracotta Horse" 
+                         class="showcase-image">
+                </div>
+            </div>
+            <div class="text-content">
+                <h2 class="section-title">Sacred Clay Guardians</h2>
+                <p class="description">
+                    Forged in clay for the Vishwakarma Puja fairs of West Bengal, these horses stand tall with proud necks and geometric patterns. They are symbols of prosperity, guardians of tradition, and enduring testaments to rural craftsmanship.
+                </p>
+                <p class="description">
+                    Each piece embodies centuries of devotion, where skilled artisans transform humble clay into divine protectors that grace Bengali homes and temples during sacred celebrations.
+                </p>
+            </div>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="card-icon">🏺</div>
+                <h3 class="card-title">Sacred Craftsmanship</h3>
+                <p class="card-text">
+                    Each terracotta horse is hand-molded using traditional techniques passed down through generations of Bengali artisans.
+                </p>
+            </div>
+            <div class="info-card">
+                <div class="card-icon">🎭</div>
+                <h3 class="card-title">Festival Significance</h3>
+                <p class="card-text">
+                    Created specifically for Vishwakarma Puja celebrations, these horses serve as divine offerings and protective talismans.
+                </p>
+            </div>
+            <div class="info-card">
+                <div class="card-icon">🌟</div>
+                <h3 class="card-title">Cultural Heritage</h3>
+                <p class="card-text">
+                    Representing over 2000 years of continuous artistic tradition, these sculptures embody Bengal's rich cultural legacy.
+                </p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

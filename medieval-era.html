@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medieval Era - Pattachitra: Painted Devotion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --medieval-bg: #B7410E;
+            --medieval-dark: #8B0000;
+            --medieval-text: #FFFFFF;
+            --gold: #FFD700;
+            --accent: #CD853F;
+            --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --shadow-strong: 0 30px 80px rgba(0, 0, 0, 0.25);
+            --transition-smooth: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--medieval-bg);
+            color: var(--medieval-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Scroll Paper Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(205, 133, 63, 0.08) 0%, transparent 50%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10,20 Q30,10 50,20 T90,20" stroke="%23FFD700" stroke-width="0.5" fill="none" opacity="0.1"/><path d="M20,40 Q40,30 60,40 T100,40" stroke="%23CD853F" stroke-width="0.3" fill="none" opacity="0.08"/><circle cx="25" cy="75" r="1" fill="%23FFD700" opacity="0.06"/></svg>') repeat;
+            animation: scrollDrift 25s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes scrollDrift {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            100% { transform: translateX(-75px) translateY(-75px) rotate(2deg); }
+        }
+
+        /* Navigation */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(139, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold), #B8860B);
+            color: var(--medieval-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-strong);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-section::before {
+            content: '🎨';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15rem;
+            opacity: 0.08;
+            animation: medievalRotate 20s linear infinite;
+        }
+
+        @keyframes medievalRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .era-badge {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid var(--medieval-dark);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--gold);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--medieval-text);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .image-showcase {
+            position: relative;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .showcase-frame {
+            position: relative;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: var(--shadow-strong);
+            transition: var(--transition-smooth);
+        }
+
+        .showcase-frame:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 100px rgba(255, 215, 0, 0.3);
+        }
+
+        .showcase-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .text-content {
+            animation: slideInRight 1s ease-out;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .description {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--medieval-text);
+            margin-bottom: 2rem;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: var(--transition-smooth);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-strong);
+            border-color: var(--gold);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-soft);
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--medieval-text);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-bar {
+                padding: 0.8rem 1rem;
+            }
+
+            .nav-title {
+                font-size: 1.2rem;
+            }
+
+            .back-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-section {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 3rem);
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1.2rem, 4vw, 1.3rem);
+            }
+
+            .era-badge {
+                font-size: 0.8rem;
+                padding: 0.6rem 1.5rem;
+                letter-spacing: 1px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .content-section {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: clamp(2.2rem, 6vw, 2.5rem);
+                text-align: center;
+            }
+
+            .description {
+                font-size: clamp(1.1rem, 4vw, 1.2rem);
+                text-align: center;
+            }
+
+            .showcase-frame {
+                padding: 1.5rem;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .showcase-image {
+                height: 300px;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 3rem 0;
+            }
+
+            .info-card {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+
+            .card-text {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 5rem 0.5rem 2rem;
+            }
+
+            .content-section {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .showcase-frame {
+                padding: 1rem;
+            }
+
+            .showcase-image {
+                height: 250px;
+            }
+
+            .info-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-title">Medieval Era - Sacred Scrolls</div>
+            <a href="index.html" class="back-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Timeline
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="era-badge">Medieval Era • 12th Century CE</div>
+        <h1 class="hero-title">Pattachitra: Painted Devotion</h1>
+        <p class="hero-subtitle">Divine narratives in vibrant pigments</p>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="content-grid">
+            <div class="image-showcase">
+                <div class="showcase-frame">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcydpfMrrxtrBGYdmy1M4dnLxNuQoXc5vkGA&s" 
+                         alt="Traditional Pattachitra Painting" 
+                         class="showcase-image">
+                </div>
+            </div>
+            <div class="text-content">
+                <h2 class="section-title">Sacred Scroll Paintings</h2>
+                <p class="description">
+                    Painted during Lord Jagannath's Rath Yatra, Pattachitra scrolls bloom with natural pigments and epic tales. Every stroke whispers devotion, preserving Odisha's rich temple traditions.
+                </p>
+                <p class="description">
+                    These vibrant masterpieces weave together divine narratives, transforming cloth and palm leaves into portable shrines that carry the essence of ancient temples into homes and hearts.
+                </p>
+            </div>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="card-icon">🎨</div>
+                <h3 class="card-title">Natural Pigments</h3>
+                <p class="card-text">
+                    Traditional colors derived from minerals, plants, and conch shells create the distinctive palette that has remained unchanged for centuries.
+                </p>
+            </div>
+            <div class="info-card">
+                <div class="card-icon">📜</div>
+                <h3 class="card-title">Epic Narratives</h3>
+                <p class="card-text">
+                    Stories from Ramayana, Mahabharata, and Jagannath legends come alive through intricate visual storytelling and symbolic representations.
+                </p>
+            </div>
+            <div class="info-card">
+                <div class="card-icon">🏛️</div>
+                <h3 class="card-title">Temple Traditions</h3>
+                <p class="card-text">
+                    Deeply connected to Jagannath Temple rituals, these paintings serve as devotional objects during Rath Yatra and other sacred festivals.
+                </p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

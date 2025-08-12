@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Through Time: Indian Art Heritage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --secondary-gold: #B8860B;
+            --text-dark: #1a1a1a;
+            --text-light: #f8f8f8;
+            --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --shadow-strong: 0 30px 80px rgba(0, 0, 0, 0.25);
+            --border-radius: 16px;
+            --transition-smooth: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --transition-time: all 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+            --glow-gold: 0 0 30px rgba(212, 175, 55, 0.6);
+            --glow-strong: 0 0 50px rgba(212, 175, 55, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background: #000;
+            color: var(--text-dark);
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            box-shadow: var(--glow-gold);
+        }
+
+        .custom-cursor.hover {
+            transform: scale(2);
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            box-shadow: var(--glow-strong);
+        }
+
+        /* Time Portal Effect */
+        .time-portal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-gold), transparent);
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            opacity: 0;
+            transition: all 2s ease-out;
+            pointer-events: none;
+        }
+
+        .time-portal.active {
+            width: 200vw;
+            height: 200vh;
+            opacity: 0.3;
+        }
+
+        /* Premium Navigation */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-indicators {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-dot::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-dot:hover::before {
+            border-color: var(--primary-gold);
+            animation: pulse 2s infinite;
+        }
+
+        .nav-dot.active {
+            background: var(--primary-gold);
+            transform: scale(1.5);
+            box-shadow: var(--glow-gold);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        /* Progress Enhancement */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold));
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: var(--glow-gold);
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 20px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-20px); }
+            100% { transform: translateX(20px); }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--text-light);
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            right: -50px;
+            bottom: -50px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            position: relative;
+        }
+
+        .hero-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--text-light), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-description {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1.8;
+            color: rgba(248, 248, 248, 0.8);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: var(--transition-smooth);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 2s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-strong), var(--glow-gold);
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-ornament {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23D4AF37" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23D4AF37" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23D4AF37" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+            animation: drift 20s linear infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-100px) translateY(-100px); }
+        }
+
+        /* Time Travel Button */
+        .time-travel-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-soft), var(--glow-gold);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .time-travel-btn:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: var(--shadow-strong), var(--glow-strong);
+        }
+
+        .time-travel-btn svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text-dark);
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Timeline Sections */
+        .timeline-container {
+            position: relative;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4rem 2rem;
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 49%, rgba(212, 175, 55, 0.1) 50%, transparent 51%);
+            opacity: 0;
+            transition: var(--transition-time);
+            pointer-events: none;
+        }
+
+        .section.visible::after {
+            opacity: 1;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1400px;
+            width: 100%;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: var(--transition-time);
+        }
+
+        .section-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: slideInContent 1.5s ease-out;
+        }
+
+        @keyframes slideInContent {
+            0% { 
+                opacity: 0; 
+                transform: translateY(100px) scale(0.9);
+                filter: blur(10px);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .text-content {
+            z-index: 2;
+            position: relative;
+            animation: fadeInText 2s ease-out;
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .era-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--primary-gold);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--primary-gold);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .era-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .era-badge:hover {
+            transform: scale(1.05);
+            box-shadow: var(--glow-gold);
+        }
+
+        .era-badge:hover::before {
+            left: 100%;
+        }
+
+        .era-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
+        }
+
+        .headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .headline:hover {
+            transform: translateX(10px);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .headline::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-gold), transparent);
+            animation: expandLine 2s ease-out;
+        }
+
+        @keyframes expandLine {
+            0% { width: 0; }
+            100% { width: 80px; }
+        }
+
+        .description {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.9;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .learn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary-gold) 0%, #FFD700 50%, var(--primary-gold) 100%);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .learn-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .learn-more:hover::before {
+            left: 100%;
+        }
+
+        .btn-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-text {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .learn-more:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.6);
+            background: linear-gradient(135deg, #FFD700 0%, var(--primary-gold) 50%, #FFD700 100%);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .learn-more:hover .btn-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .learn-more:hover .btn-arrow {
+            transform: translateX(5px);
+        }
+
+        .learn-more:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .explore-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .explore-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: var(--transition-smooth);
+        }
+
+        .learn-more:hover .explore-icon {
+            transform: rotate(45deg) scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInImage 2s ease-out;
+        }
+
+        @keyframes fadeInImage {
+            0% { opacity: 0; transform: translateX(50px) scale(0.8); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        .artifact-frame {
+            position: relative;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-time);
+            cursor: pointer;
+            overflow: hidden;
+            width: 500px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .artifact-frame::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: transform 0.6s ease;
+            opacity: 0;
+        }
+
+        .artifact-frame:hover::before {
+            transform: rotate(45deg) translate(50%, 50%);
+            opacity: 1;
+        }
+
+        .section-content.visible .artifact-frame {
+            opacity: 1;
+        }
+
+
+        .artifact-frame:hover {
+            box-shadow: var(--shadow-strong), var(--glow-strong);
+        }
+
+        .artifact-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: calc(var(--border-radius) - 2rem);
+            box-shadow: var(--shadow-strong);
+            position: relative;
+        }
+
+
+        .image-caption {
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+
+        /* Era-specific styling */
+        .ancient {
+            background: linear-gradient(135deg, #D9C6A5 0%, #C4A882 50%, #B8A082 100%);
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .ancient::before {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%238B4513" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="%238B4513" opacity="0.05"/></svg>') repeat;
+        }
+
+        .ancient .headline { color: #8B4513; }
+        .ancient .description { color: #5D4037; }
+
+        .medieval {
+            background: linear-gradient(135deg, #B7410E 0%, #8B2500 50%, #6D1F00 100%);
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .medieval::before {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 60,40 90,40 70,60 80,90 50,75 20,90 30,60 10,40 40,40" fill="%23D4AF37" opacity="0.1"/></svg>') repeat;
+        }
+
+        .medieval .headline,
+        .medieval .description { color: var(--text-light); }
+
+        .colonial {
+            background: linear-gradient(135deg, #F2E2C4 0%, #E6D4A8 50%, #D4C294 100%);
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .colonial::before {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="40" y="40" width="20" height="20" fill="%238B4513" opacity="0.1"/><circle cx="25" cy="75" r="3" fill="%238B4513" opacity="0.05"/></svg>') repeat;
+        }
+
+        .colonial .headline { color: #8B4513; }
+        .colonial .description { color: #5D4037; }
+
+        .modern {
+            background: linear-gradient(135deg, #3B9C3F 0%, #2E7D32 50%, #1B5E20 100%);
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .modern::before {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 10 L60 40 L90 40 L70 60 L80 90 L50 75 L20 90 L30 60 L10 40 L40 40 Z" fill="%23D4AF37" opacity="0.1"/></svg>') repeat;
+        }
+
+        .modern .headline,
+        .modern .description { color: var(--text-light); }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .scroll-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .scroll-dot::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: var(--transition-smooth);
+        }
+
+        .scroll-dot:hover::before {
+            border-color: var(--primary-gold);
+            animation: pulse 1.5s infinite;
+        }
+
+        .scroll-dot.active {
+            background: var(--primary-gold);
+            box-shadow: var(--glow-gold);
+            transform: scale(1.2);
+        }
+
+        .scroll-dot::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+
+        .scroll-dot:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(-5px);
+        }
+
+        /* Interactive Elements */
+        .clickable {
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .clickable:hover {
+            transform: scale(1.02);
+        }
+
+        /* Era Transition Effect */
+        .era-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--primary-gold), transparent);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .era-transition.active {
+            opacity: 0.2;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .custom-cursor {
+                display: none;
+            }
+
+            .nav-bar {
+                padding: 1rem;
+            }
+
+            .nav-title {
+                font-size: 1rem;
+            }
+
+            .nav-indicators {
+                gap: 0.5rem;
+            }
+
+            .section-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+                padding: 0 1rem;
+            }
+
+            .headline {
+                font-size: clamp(2rem, 6vw, 2.5rem);
+                text-align: center;
+            }
+
+            .description {
+                font-size: clamp(1.1rem, 4vw, 1.2rem);
+                max-width: none;
+                text-align: center;
+            }
+
+            .artifact-frame {
+                width: 100%;
+                max-width: 400px;
+                height: 300px;
+                margin: 0 auto;
+            }
+
+            .artifact-image {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .time-travel-btn {
+                width: 50px;
+                height: 50px;
+                bottom: 1rem;
+                right: 1rem;
+            }
+
+            .time-travel-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 3rem);
+            }
+
+            .hero-description {
+                font-size: clamp(1.1rem, 4vw, 1.2rem);
+                padding: 0 1rem;
+            }
+
+            .hero-cta {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .learn-more {
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+            }
+
+            .era-badge {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
+                letter-spacing: 1px;
+            }
+
+            .era-year {
+                font-size: 1rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .headline {
+                font-size: clamp(1.8rem, 7vw, 2rem);
+            }
+
+            .description {
+                font-size: clamp(1rem, 4vw, 1.1rem);
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 8vw, 2.5rem);
+            }
+
+            .hero-description {
+                font-size: clamp(1rem, 4vw, 1.2rem);
+            }
+
+            .section {
+                padding: 2rem 0.5rem;
+            }
+
+            .nav-title {
+                font-size: 1rem;
+            }
+
+            .artifact-frame {
+                height: 250px;
+                padding: 1rem;
+            }
+
+            .learn-more {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.8rem;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Time Portal Effect -->
+    <div class="time-portal"></div>
+
+    <!-- Era Transition Effect -->
+    <div class="era-transition"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-title">Indian Art Heritage</div>
+            <div class="nav-indicators">
+                <div class="nav-dot active" data-section="0"></div>
+                <div class="nav-dot" data-section="1"></div>
+                <div class="nav-dot" data-section="2"></div>
+                <div class="nav-dot" data-section="3"></div>
+                <div class="nav-dot" data-section="4"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+
+    <!-- Time Travel Button -->
+    <div class="time-travel-btn" title="Travel Through Time">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12,6 12,12 16,14"/>
+        </svg>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-dot active" data-section="0" data-label="Introduction"></div>
+        <div class="scroll-dot" data-section="1" data-label="Ancient Era"></div>
+        <div class="scroll-dot" data-section="2" data-label="Medieval Era"></div>
+        <div class="scroll-dot" data-section="3" data-label="Colonial Era"></div>
+        <div class="scroll-dot" data-section="4" data-label="Modern Era"></div>
+    </div>
+
+    <div class="timeline-container">
+        <!-- Hero Section -->
+        <section class="hero-section" data-section="0">
+            <div class="hero-ornament"></div>
+            <div class="hero-content">
+                <div class="hero-subtitle">Cultural Heritage Journey</div>
+                <h1 class="hero-title">Fairs, Festivals, and Local Deities in the Development of Art Forms in India</h1>
+                <p class="hero-description">
+                    Discover how sacred celebrations, vibrant festivals, and devotion to local deities have shaped India's magnificent artistic traditions across millennia.
+                </p>
+                <a href="#ancient" class="hero-cta">
+                    Begin Journey
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Ancient Era -->
+        <section class="section ancient" data-section="1" id="ancient">
+            <div class="section-content">
+                <div class="text-content">
+                    <div class="era-badge clickable">Ancient Era</div>
+                    <div class="era-year">200 BCE</div>
+                    <h2 class="headline clickable">Terracotta Horse – Bankura</h2>
+                    <p class="description">
+                        The Bankura terracotta horse stands as a timeless symbol of rural artistry in West Bengal, crafted with devotion for Vishwakarma Puja fairs. These elegant sculptures represent prosperity and divine protection, their smooth curves and geometric motifs reflecting centuries-old craftsmanship. Each piece celebrates the eternal bond between art, spirituality, and community celebration in village festivals.
+                    </p>
+                    <a href="ancient-era.html" class="learn-more clickable">
+                        <span class="btn-icon">🏺</span>
+                        <span class="btn-text">Explore Ancient Traditions</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+                <div class="image-container">
+                    <div class="artifact-frame clickable">
+                        <img src="https://bongoniketan.in/cdn/shop/files/BengalhandmadeterracottaartifactproductfromPanchmura_Bishnupur_Bankura_WestBengalbyBONGONIKETAN25.jpg?v=1717732970" 
+                             alt="Bankura Terracotta Horse" 
+                             class="artifact-image">
+                        <div class="image-caption">Sacred terracotta craftsmanship from Bengal</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medieval Era -->
+        <section class="section medieval" data-section="2">
+            <div class="section-content">
+                <div class="image-container">
+                    <div class="artifact-frame clickable">
+                        <img src="https://c9admin.cottage9.com/uploads/2492/Pattachitra-Art-An-Expression-Of-Mythology-And-Folklore.jpg" 
+                             alt="Pattachitra Painting" 
+                             class="artifact-image">
+                        <div class="image-caption">Divine narratives in vibrant pigments</div>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <div class="era-badge clickable">Medieval Era</div>
+                    <div class="era-year">12th Century CE</div>
+                    <h2 class="headline clickable">Pattachitra Painting – Odisha</h2>
+                    <p class="description">
+                        Pattachitra emerges as Odisha's most revered scroll painting tradition, born from devotion to Lord Jagannath during the magnificent Rath Yatra festival. These vibrant masterpieces weave together tales from Hindu epics and local folklore using natural pigments and intricate detailing. Artists preserve this sacred legacy through generations, creating visual prayers that connect earthly celebrations with divine narratives.
+                    </p>
+                    <a href="medieval-era.html" class="learn-more clickable">
+                        <span class="btn-icon">🎨</span>
+                        <span class="btn-text">Explore Medieval Art</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Colonial Era -->
+        <section class="section colonial" data-section="3">
+            <div class="section-content">
+                <div class="text-content">
+                    <div class="era-badge clickable">Colonial Era</div>
+                    <div class="era-year">19th Century CE</div>
+                    <h2 class="headline clickable">Kalighat Painting – Kolkata</h2>
+                    <p class="description">
+                        Born in the sacred precincts of Kolkata's Kalighat temple, this revolutionary art form brilliantly merged ancient folk traditions with emerging urban sensibilities during Kali Puja celebrations. These bold paintings captured deities, social commentary, and mythological stories with distinctive brushstrokes and flat, vibrant colors. This transformative style marked India's artistic evolution while maintaining deep spiritual roots in temple worship and festival traditions.
+                    </p>
+                    <a href="colonial-era.html" class="learn-more clickable">
+                        <span class="btn-icon">🏛️</span>
+                        <span class="btn-text">Explore Colonial Heritage</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+                <div class="image-container">
+                    <div class="artifact-frame clickable">
+                        <img src="https://d197irk3q85upd.cloudfront.net/catalog/product/k/a/kalighat_pat_photo.jpg" 
+                             alt="Kalighat Painting" 
+                             class="artifact-image">
+                        <div class="image-caption">Urban folk art meets temple tradition</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modern Era -->
+        <section class="section modern" data-section="4">
+            <div class="section-content">
+                <div class="image-container">
+                    <div class="artifact-frame clickable">
+                        <img src="https://smarthistory.org/wp-content/uploads/2022/08/Hanuman_kathali.jpeg" 
+                             alt="Kathakali Mask" 
+                             class="artifact-image">
+                        <div class="image-caption">Living heritage in contemporary celebration</div>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <div class="era-badge clickable">Modern Era</div>
+                    <div class="era-year">21st Century</div>
+                    <h2 class="headline clickable">Kathakali Mask – Kerala</h2>
+                    <p class="description">
+                        The Kathakali mask represents Kerala's living cultural heritage, magnificently displayed during Onam festival performances and temple celebrations across the state. Each hand-painted mask, adorned with vivid colors and intricate patterns, embodies characters from ancient Hindu epics in the classical Kathakali dance-drama tradition. These elaborate artistic creations continue to mesmerize contemporary audiences, ensuring this sacred art form thrives in modern festival celebrations.
+                    </p>
+                    <a href="modern-era.html" class="learn-more clickable">
+                        <span class="btn-icon">🎭</span>
+                        <span class="btn-text">Explore Modern Expressions</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+  <script>let scrolled = false;</script>
+
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        const clickableElements = document.querySelectorAll('.clickable, .nav-dot, .scroll-dot, .time-travel-btn');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        clickableElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Time Portal Effect
+        const timePortal = document.querySelector('.time-portal');
+        const eraTransition = document.querySelector('.era-transition');
+        let currentEra = 0;
+
+        function triggerTimePortal() {
+            timePortal.classList.add('active');
+            eraTransition.classList.add('active');
+            
+            setTimeout(() => {
+                timePortal.classList.remove('active');
+                eraTransition.classList.remove('active');
+            }, 2000);
+        }
+
+        // Time Travel Button
+        document.querySelector('.time-travel-btn').addEventListener('click', () => {
+            triggerTimePortal();
+            const nextSection = (currentEra + 1) % 5;
+            setTimeout(() => scrollToSection(nextSection), 1000);
+        });
+
+        // Enhanced Intersection Observer
+        const observerOptions = {
+            threshold: [0.1, 0.3, 0.5, 0.7],
+            rootMargin: '0px 0px -20% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const content = entry.target.querySelector('.section-content');
+                const sectionIndex = parseInt(entry.target.dataset.section);
+                
+                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                    content?.classList.add('visible');
+                    entry.target.classList.add('visible');
+                    updateActiveIndicators(sectionIndex);
+                    currentEra = sectionIndex;
+                    
+                    // Trigger subtle time portal effect on era change
+                    if (sectionIndex > 0) {
+                        setTimeout(() => {
+                            eraTransition.classList.add('active');
+                            setTimeout(() => eraTransition.classList.remove('active'), 300);
+                        }, 200);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section, .hero-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Update active indicators
+        function updateActiveIndicators(activeIndex) {
+            // Update navigation dots
+            document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === activeIndex);
+            });
+            
+            // Update scroll indicator dots
+            document.querySelectorAll('.scroll-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === activeIndex);
+            });
+        }
+
+        // Enhanced progress bar
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            document.querySelector('.progress-fill').style.width = scrollPercent + '%';
+        }
+
+        // Smooth scroll to sections
+        function scrollToSection(sectionIndex) {
+            const sections = document.querySelectorAll('[data-section]');
+            const targetSection = sections[sectionIndex];
+            if (targetSection) {
+                triggerTimePortal();
+                targetSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Navigation click handlers
+        document.querySelectorAll('.nav-dot, .scroll-dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                if (index !== currentEra) {
+                    scrollToSection(index);
+                }
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const currentActive = document.querySelector('.nav-dot.active');
+            const currentIndex = Array.from(document.querySelectorAll('.nav-dot')).indexOf(currentActive);
+            
+            if (e.key === 'ArrowDown' && currentIndex < 4) {
+                e.preventDefault();
+                scrollToSection(currentIndex + 1);
+            } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+                e.preventDefault();
+                scrollToSection(currentIndex - 1);
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                const nextSection = (currentIndex + 1) % 5;
+                scrollToSection(nextSection);
+            }
+        });
+
+        // Enhanced scroll effects
+        let lastScrollY = window.scrollY;
+        
+        // Optimized scroll handler
+        let ticking = false;
+        function handleScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateProgressBar();
+                    lastScrollY = scrolled;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', updateProgressBar);
+        
+        // Click effects
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('clickable')) {
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(212, 175, 55, 0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = (e.clientX - e.target.offsetLeft) + 'px';
+                ripple.style.top = (e.clientY - e.target.offsetTop) + 'px';
+                ripple.style.width = ripple.style.height = '20px';
+                ripple.style.pointerEvents = 'none';
+                
+                e.target.style.position = 'relative';
+                e.target.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            }
+        });
+        
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        window.addEventListener('load', () => {
+            updateProgressBar();
+            
+            // Add stagger animation to hero elements
+            const heroElements = document.querySelectorAll('.hero-subtitle, .hero-title, .hero-description, .hero-cta');
+            heroElements.forEach((el, index) => {
+                el.style.animationDelay = `${0.5 + index * 0.5}s`;
+            });
+            
+            // Initial time portal effect
+            setTimeout(() => {
+                timePortal.classList.add('active');
+                setTimeout(() => timePortal.classList.remove('active'), 1500);
+            }, 2000);
+        });
+
+        // Preload images for performance
+        const imageUrls = [
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bankura_horse.jpg/800px-Bankura_horse.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Pattachitra_from_Odisha.jpg/800px-Pattachitra_from_Odisha.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Kalighat_painting_of_Ganga.jpg/800px-Kalighat_painting_of_Ganga.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Kathakali_Makeup_Artist.jpg/800px-Kathakali_Makeup_Artist.jpg'
+        ];
+
+        imageUrls.forEach(url => {
+            const img = new Image();
+            img.src = url;
+        });
+
+        // Audio feedback (optional - can be enabled)
+        function playTimeSound() {
+            // Uncomment to add audio feedback
+            // const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT');
+            // audio.play().catch(() => {});
+        }
+        
+        // Intersection observer for era transitions
+        const eraObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    const sectionIndex = parseInt(section.dataset.section);
+                    
+                    // Add era-specific effects
+                    if (sectionIndex > 0) {
+                        section.style.filter = 'brightness(1.1) contrast(1.05)';
+                        setTimeout(() => {
+                            section.style.filter = 'none';
+                        }, 1000);
+                    }
+                }
+            });
+        }, { threshold: 0.7 });
+        
+        document.querySelectorAll('.section').forEach(section => {
+            eraObserver.observe(section);
+        });
+    </script>
+</body>
+</html>
